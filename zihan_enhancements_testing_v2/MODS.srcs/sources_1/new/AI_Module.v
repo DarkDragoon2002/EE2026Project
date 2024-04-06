@@ -20,10 +20,10 @@ module AI_Module(
     reg [15:0] arcos [99:0];
         
     initial begin
-        $readmemh("arco_lut.mem",arcos);
+        $readmemh("arcos_lut.mem",arcos);
     end 
         
-    reg [2:0] random;
+    wire [2:0] random_gg;
     
     reg stage = 0;
     
@@ -33,7 +33,7 @@ module AI_Module(
     assign dist_to_opp = xpos - xpos_opp;
     
     //randomizer
-    lfsr lfsr_3bit(.clk1k(clk1k), .reset(state), .out(random));
+    lfsr lfsr_3bit(.clk1k(clk1k), .reset(state), .out(random_gg));
     
     integer pre_arcos;
     
@@ -50,8 +50,8 @@ module AI_Module(
         if (state) begin
             if (stage == 0) begin
                 //calculate movement
-                direction = random % 2;
-                dist_travel = random * 250;
+                direction = random_gg % 2;
+                dist_travel = random_gg * 250;
                 stage = 1;
             end
             if (stage == 1) begin

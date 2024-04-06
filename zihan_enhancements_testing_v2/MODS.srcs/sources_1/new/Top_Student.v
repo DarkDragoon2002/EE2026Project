@@ -70,7 +70,7 @@ module Top_Student (input clk,
     wire player;
     
     //0 for Multiplayer, 1 for Singleplayer
-    wire singleplayer;
+    wire singleplayer = 1;
     
     wire [7:0] p1_xpos;
     wire [7:0] p1_ypos;
